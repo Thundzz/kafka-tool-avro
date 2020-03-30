@@ -22,11 +22,10 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class AvroCustomMessageDecorator implements ICustomMessageDecorator {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(AvroCustomMessageDecorator.class);
+    public static final Logger LOGGER = LoggerFactory.getLogger(AvroCustomMessageDecorator.class);
     private static final String DISPLAY_NAME = "Avro";
-    private static final String PROPERTIES_FILE = String.join(File.separator, System.getProperty("user.home"), ".com.laymain.kafkatool.plugin.avro.properties");
+    private static final String PROPERTIES_FILE = ConfigurationLoader.getConfigurationFileName();
     private static final Properties SCHEMA_REGISTY_ENDPOINTS = loadProperties();
-
     private final ConcurrentMap<String, KafkaAvroDeserializer> deserializers = new ConcurrentHashMap<>();
     private final AtomicBoolean configurationDialogOpened = new AtomicBoolean(false);
     private final AtomicBoolean menuBarInjectionDone = new AtomicBoolean(false);
